@@ -1,6 +1,6 @@
 <nav>
-<a routerLink="/" routerLinkActive="active">Inicio</a>
-<a routerLink="/profile" routerLinkActive="active" *ngIf='AuthService.logIn'>Perfil</a>
-<a routerLink="/login" routerLinkActive="active" *ngIf="!AuthService.logIn">Login</a>
-<a class='nav-link' (click)="logout()" *ngIf="AuthService.logIn">Logout</a>
+    <a routerLink="/" routerLinkActive="active">Inicio</a>
+    <a routerLink="/profile" routerLinkActive="active" *ngIf='authService.logIn'>Perfil</a>
+    <a routerLink="/login" routerLinkActive="active" *ngIf="!authService.logIn">Login</a>
+    <a class='nav-link' (click)="logout()" *ngIf="authService.logIn">Logout</a>
 </nav>

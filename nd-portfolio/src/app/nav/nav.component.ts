@@ -5,13 +5,12 @@ import { AuthService } from '../auth.service';
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.css']
+  styleUrls: ['./nav.component.css'],
 })
 export class NavComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(public authService: AuthService) {}
+  logout() {
+    this.authService.logout();
   }
-
+  ngOnInit(): void {}
 }
