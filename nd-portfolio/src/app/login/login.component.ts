@@ -11,6 +11,7 @@ export class LoginComponent implements OnInit {
   form: FormGroup;
   email = '';
   password = '';
+  username = '';
 
   //Inyectar en el constructor el formBuilder
   constructor(
@@ -30,6 +31,30 @@ export class LoginComponent implements OnInit {
       password: ['', [Validators.required, Validators.minLength(8)]],
       mail: ['', [Validators.required, Validators.email]],
     });
+  }
+
+  get Username() {
+    return this.form.get('username');
+  }
+
+  get Password() {
+    return this.form.get('password');
+  }
+
+  get Mail() {
+    return this.form.get('mail');
+  }
+
+  get UsernameValid() {
+    return this.Username?.touched && !this.Username?.valid;
+  }
+
+  get PasswordValid() {
+    return this.Password?.touched && !this.Password?.valid;
+  }
+
+  get MailValid() {
+    return this.Mail?.touched && !this.Mail?.valid;
   }
 
   Login() {

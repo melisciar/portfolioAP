@@ -1,15 +1,63 @@
 <form [formGroup]="form" (ngSubmit)="onEnviar($event)">
   <div>
-    <label for="email">Email</label>
-    <input type="email" id="email" formControlName="email" />
+    <label for="username">Username: </label>
+    <input
+      type="text"
+      formControlName="username"
+      [ngClass]="{ 'border-danger': Username?.errors && Username?.touched }"
+    />
+  </div>
+  <div *ngIf="Username?.errors && Username?.touched">
+    <p *ngIf="Username?.hasError('required')" class="error">
+      El usuario es requerido.
+    </p>
+    <p *ngIf="Username?.hasError('minlength')" class="error">
+      El nombre de usuario debe tener al menos 5 caracteres.
+    </p>
+    <p *ngIf="Username?.hasError('maxlength')" class="error">
+      El nombre de usuario no puede tener más de 12 caracteres.
+    </p>
+  </div>
+  <br />
+
+  <div>
+    <label for="email">Email: </label>
+    <input
+      type="email"
+      formControlName="email"
+      [ngClass]="{ 'border-danger': Username?.errors && Username?.touched }"
+    />
+  </div>
+  <!-- Gracias al getter que configuramos en el controlador -->
+  <div *ngIf="Mail?.errors && Mail?.touched">
+    <p *ngIf="Mail?.hasError('required')" class="error">
+      El email es requerido.
+    </p>
+    <p *ngIf="Mail?.hasError('email')" class="error">
+      El formato del email debe ser válido.
+    </p>
+  </div>
+
+  <br />
+  <div>
+    <label for="exampleInputPassword1" class="form-label">Password: </label>
+    <input
+      type="password"
+      formControlName="password"
+      [class.border-danger]="MailValid"
+    />
+  </div>
+  <!-- Gracias al getter que configuramos en el controlador -->
+  <div *ngIf="Password?.errors && Password?.touched">
+    <p *ngIf="Password?.hasError('required')" class="error">
+      El password es requerido.
+    </p>
+    <p *ngIf="Password?.hasError('minlength')" class="error">
+      El password debe ser de 8 o más caracteres.
+    </p>
   </div>
   <br />
   <div>
-    <label for="password">Password</label>
-    <input type="password" id="password" formControlName="password" />
-  </div>
-  <br />
-  <div>
-    <button type="submit" [disabled]="!form.valid">Login</button>
+    <button [disabled]="!this.form.valid" type="submit">Iniciar Sesión</button>
   </div>
 </form>
